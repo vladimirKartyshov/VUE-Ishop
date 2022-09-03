@@ -3,8 +3,8 @@
     <ul class="catalog__list">
       <app-product-item
         :product="product"
-        v-for="(product, index) in products"
-        :key="index"
+        v-for="product in products"
+        :key="product.id"
       ></app-product-item>
     </ul>
   </div>

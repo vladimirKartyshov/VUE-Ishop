@@ -31,8 +31,9 @@
           class="pagination__link pagination__link--arrow"
           href="#"
           aria-label="Следующая страница"
-          @click="pageNumber = page +1"
+          @click="changePage(currentPage)"
         >
+          {{ currentPage }}
           <svg width="8" height="14" fill="currentColor">
             <use xlink:href="#icon-arrow-right"></use>
           </svg>
@@ -48,6 +49,12 @@ export default {
   model: {
     prop: 'page',
     event: 'paginate',
+  },
+
+  data() {
+    return {
+      currentPage: this.page,
+    }
   },
 
   props: {
@@ -66,12 +73,15 @@ export default {
     paginate(page) {
       this.$emit('paginate', page)
     },
+    changePage() {
+      this.currentPage = this.currentPage + 1
+    },
   },
 }
 </script>
 
 <style scoped>
-  .pagination__link--current {
-    color: blueviolet;
-  }
+.pagination__link--current {
+  color: blueviolet;
+}
 </style>
