@@ -59,4 +59,9 @@ export default [
     price: 2000,
     image: '/img/my-img/product-12.jpg',
   },
+  {
+    title: 'Garmin X',
+    price: 48000,
+    image: '/img/my-img/product-10.jpg',
+  },
 ]

@@ -5,7 +5,7 @@
         :product="product"
         v-for="(product, index) in products"
         :key="index"
-      />
+      ></app-product-item>
     </ul>
   </div>
 </template>
