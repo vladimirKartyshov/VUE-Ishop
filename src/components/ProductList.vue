@@ -16,9 +16,11 @@ import AppProductItem from './ProductItem.vue'
 export default {
   name: 'AppProductList',
   components: {AppProductItem},
+
   props: {
     products: [],
   },
+
   data() {
     return {}
   },

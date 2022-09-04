@@ -40,7 +40,6 @@
 <script>
 export default {
   name: 'AppProductItem',
-
   data() {
     return {
       color: '#73B6EA',

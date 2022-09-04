@@ -26,7 +26,7 @@
           {{ pageNumber }}
         </a>
       </li>
-      <li class="pagination__item">
+      <li class="pagination__item"> 
         <a
           class="pagination__link pagination__link--arrow"
           href="#"
