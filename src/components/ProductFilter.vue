@@ -54,10 +54,12 @@
 
         <fieldset class="form__block">
           <legend class="form__legend">Цвет</legend>
+          {{colors}}
           <ul class="colors">
             <li class="colors__item">
               <label class="colors__label">
-                <input
+                <input @click="filteredColors()"
+                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -71,6 +73,7 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
+                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -83,6 +86,7 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
+                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -94,6 +98,7 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
+                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -105,6 +110,7 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
+                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -116,6 +122,7 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
+                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -127,6 +134,7 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
+                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -256,6 +264,8 @@ export default {
       currentPriceFrom: 0,
       currentPriceTo: 0,
       currentCategoryId: 0,
+
+      colors: [],
     }
   },
 
@@ -278,6 +288,12 @@ export default {
   },
 
   methods: {
+    // filteredColors() {
+    //   return this.colors.filter((color) => {          // filteredColors ???
+    //     return color.indexOf(this.colors) 
+    //   })
+    // },
+
     submit() {
       this.$emit('update:priceFrom', this.currentPriceFrom)
       this.$emit('update:priceTo', this.currentPriceTo)

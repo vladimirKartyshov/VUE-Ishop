@@ -26,14 +26,14 @@
           {{ pageNumber }}
         </a>
       </li>
-      <li class="pagination__item"> 
+      <li class="pagination__item">
         <a
           class="pagination__link pagination__link--arrow"
           href="#"
           aria-label="Следующая страница"
-          @click="changePage(currentPage)"
+          @click="nextPage"
         >
-          {{ currentPage }}
+          {{ page }}
           <svg width="8" height="14" fill="currentColor">
             <use xlink:href="#icon-arrow-right"></use>
           </svg>
@@ -67,14 +67,17 @@ export default {
     pages() {
       return Math.ceil(this.count / this.perPage)
     },
+    nextPage() {
+      return this.page + 1
+    },
+    prevPage() {
+      return this.page - 1
+    },
   },
 
   methods: {
     paginate(page) {
       this.$emit('paginate', page)
-    },
-    changePage() {
-      this.currentPage = this.currentPage + 1
     },
   },
 }
