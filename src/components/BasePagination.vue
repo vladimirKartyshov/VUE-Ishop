@@ -3,13 +3,16 @@
     <ul class="catalog__pagination pagination">
       <li class="pagination__item">
         <a
-          class="pagination__link pagination__link--arrow pagination__link--disabled"
+          class="pagination__link pagination__link--arrow"
           href="#"
           aria-label="Предыдущая страница"
+          @click.prevent="paginate(prevPage)"
+          v-if="page > 1"
         >
           <svg width="8" height="14" fill="currentColor">
             <use xlink:href="#icon-arrow-left"></use>
           </svg>
+          {{ page }}
         </a>
       </li>
       <li
@@ -29,9 +32,10 @@
       <li class="pagination__item">
         <a
           class="pagination__link pagination__link--arrow"
+          :class="{'pagination__link--disabled': page > 2}"
           href="#"
           aria-label="Следующая страница"
-          @click="nextPage"
+          @click.prevent="paginate(nextPage)"
         >
           {{ page }}
           <svg width="8" height="14" fill="currentColor">
@@ -86,5 +90,8 @@ export default {
 <style scoped>
 .pagination__link--current {
   color: blueviolet;
+}
+.pagination__link--arrow {
+  color: green;
 }
 </style>

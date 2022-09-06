@@ -54,12 +54,12 @@
 
         <fieldset class="form__block">
           <legend class="form__legend">Цвет</legend>
-          {{colors}}
+
           <ul class="colors">
             <li class="colors__item">
               <label class="colors__label">
-                <input @click="filteredColors()"
-                  v-model="colors"
+                <input
+                  @click="filteredColors()"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -73,7 +73,6 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
-                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -86,7 +85,6 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
-                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -98,7 +96,6 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
-                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -110,7 +107,6 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
-                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -122,7 +118,6 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
-                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -134,7 +129,6 @@
             <li class="colors__item">
               <label class="colors__label">
                 <input
-                  v-model="colors"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -289,8 +283,8 @@ export default {
 
   methods: {
     // filteredColors() {
-    //   return this.colors.filter((color) => {          // filteredColors ???
-    //     return color.indexOf(this.colors) 
+    //   return this.colors.filter((color) => {         
+    //     return color.indexOf(this.colors)
     //   })
     // },
 
