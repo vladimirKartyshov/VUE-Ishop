@@ -5,7 +5,7 @@ export default [
     title: 'Sumsung',
     price: 40000,
     image: '/img/my-img/product-7.png',
-    colors: ['#8be000', '#222'],
+    colors: ['#ffbe15', '#222'],
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export default [
     title: 'HTC',
     price: 20000,
     image: '/img/my-img/product-5.png',
-    colors: ['#8be000', '#222'],
+    colors: ['#8be000', '#ffbe15'],
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ export default [
     title: 'HTC X',
     price: 32000,
     image: '/img/my-img/product-4.png',
-    colors: ['#73b6ea', '#8be000'],
+    colors: ['#939393', '#8be000'],
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ export default [
     title: 'HTC 2X',
     price: 35000,
     image: '/img/my-img/product-3.png',
-    colors: ['#8be000', '#222'],
+    colors: ['#ffbe15', '#222'],
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ export default [
     title: 'Sumsung X',
     price: 24000,
     image: '/img/my-img/product-2.png',
-    colors: ['#73b6ea', '#8be000'],
+    colors: ['#73b6ea', '#939393'],
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ export default [
     title: 'HUEAWAY',
     price: 8000,
     image: '/img/my-img/product-1.png',
-    colors: ['#8be000', '#222'],
+    colors: ['#939393', '#222'],
   },
   {
     id: 8,
@@ -77,7 +77,7 @@ export default [
     title: 'Watch Garmin',
     price: 45000,
     image: '/img/my-img/product-10.jpg',
-    colors: ['#73b6ea', '#8be000'],
+    colors: ['#ffbe15', '#939393'],
   },
   {
     id: 11,
@@ -93,7 +93,7 @@ export default [
     title: 'Book Kindle',
     price: 2000,
     image: '/img/my-img/product-12.jpg',
-    colors: ['#73b6ea', '#8be000'],
+    colors: ['#ffbe15', '#8be000'],
   },
   {
     id: 13,
@@ -101,6 +101,6 @@ export default [
     title: 'Watch Garmin X',
     price: 58000,
     image: '/img/my-img/product-10.jpg',
-    colors: ['#8be000', '#222'],
+    colors: ['#939393', '#222'],
   },
 ]
