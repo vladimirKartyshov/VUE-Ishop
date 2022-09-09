@@ -63,7 +63,7 @@
             >
               <label class="colors__label">
                 <input
-                  v-model="colors"
+                  v-model="currentColor"
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
@@ -122,13 +122,14 @@ import categories from '@/data/categories'
 
 export default {
   name: 'AppProductFilterer',
-  props: ['priceFrom', 'priceTo', 'categoryId'],
+  props: ['priceFrom', 'priceTo', 'categoryId', 'startColor'],
 
   data() {
     return {
       currentPriceFrom: 0,
       currentPriceTo: 0,
       currentCategoryId: 0,
+      currentColor: 0,
 
       colors: [
         '#73b6ea',
@@ -190,6 +191,9 @@ export default {
     categoryId(value) {
       this.currentCategoryId = value
     },
+    startColor(value) {
+      this.currentColor = value
+    },
   },
 
   methods: {
@@ -197,17 +201,19 @@ export default {
     //   return this.colors.filter((color) => {
     //     return color.indexOf(this.colors)
     //   })
-    // },
+    //},
 
     submit() {
       this.$emit('update:priceFrom', this.currentPriceFrom)
       this.$emit('update:priceTo', this.currentPriceTo)
       this.$emit('update:categoryId', this.currentCategoryId)
+      this.$emit('update:startColor', this.currentColor)
     },
     reset() {
       this.$emit('update:priceFrom', 0)
       this.$emit('update:priceTo', 0)
       this.$emit('update:categoryId', 0)
+      this.$emit('update:startColor', 0)
     },
   },
 }

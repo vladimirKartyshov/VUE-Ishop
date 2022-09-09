@@ -11,6 +11,7 @@
           :price-from.sync="filterPriceFrom"
           :price-to.sync="filterPriceTo"
           :category-id.sync="filterCategoryId"
+          :start-color.sync="startColor"
         ></app-product-filter>
 
         <section class="catalog">
@@ -46,6 +47,7 @@ export default {
       filterPriceFrom: 0,
       filterPriceTo: 0,
       filterCategoryId: 0,
+      startColor: 0,
 
       page: 1,
       productsPerPage: 6,
