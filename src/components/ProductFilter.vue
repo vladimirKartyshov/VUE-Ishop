@@ -67,8 +67,8 @@
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
-                  value="#73B6EA"
-                  checked=""
+                  :value="color"
+                  :id="color"
                 />
                 <span class="colors__value" :style="{backgroundColor: color}">
                 </span>
