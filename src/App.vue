@@ -49,6 +49,8 @@ export default {
       filterCategoryId: 0,
       startColor: 0,
 
+      // startColors: [],
+
       page: 1,
       productsPerPage: 6,
     }
@@ -73,11 +75,18 @@ export default {
           (product) => product.categoryId === this.filterCategoryId
         )
       }
-      if (this.startColor > 0) {
+      if (this.startColor && this.startColor.length) {
         filteredProducts = filteredProducts.filter(
-          (product) => product.colors === this.startColor
+          (product) => product.colors.indexOf(this.startColor) > -1
         )
       }
+    //   sortCollor() {
+    //   for (let i = 0; i < this.products.length; i++) {
+    //     this.startColors.push(this.products[i].color);
+    //   }
+    //   this.startColors = Array.from(new Set(this.startColors));
+
+    //  }
       
       return filteredProducts
     },

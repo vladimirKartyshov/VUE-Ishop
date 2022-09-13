@@ -101,6 +101,6 @@ export default [
     title: 'Watch Garmin X',
     price: 58000,
     image: '/img/my-img/product-10.jpg',
-    colors: ['#939393', '#222'],
+    colors: ['#222', '#939393'],
   },
 ]
