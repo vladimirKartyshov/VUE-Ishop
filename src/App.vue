@@ -73,7 +73,12 @@ export default {
           (product) => product.categoryId === this.filterCategoryId
         )
       }
-
+      if (this.startColor > 0) {
+        filteredProducts = filteredProducts.filter(
+          (product) => product.colors === this.startColor
+        )
+      }
+      
       return filteredProducts
     },
     products() {
