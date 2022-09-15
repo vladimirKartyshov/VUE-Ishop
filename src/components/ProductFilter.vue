@@ -138,7 +138,7 @@ export default {
         '#8be000',
         '#ff6b00',
         '#fff',
-        '#000',
+        '#222',
       ],
       dataSizes: [
         {
