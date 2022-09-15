@@ -197,12 +197,6 @@ export default {
   },
 
   methods: {
-    // filteredColors() {
-    //   return this.colors.filter((color) => {
-    //     return color.indexOf(this.colors)
-    //   })
-    //},
-
     submit() {
       this.$emit('update:priceFrom', this.currentPriceFrom)
       this.$emit('update:priceTo', this.currentPriceTo)
