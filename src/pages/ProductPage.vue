@@ -9,7 +9,7 @@
           <a class="breadcrumbs__link" href="#"> Мобильный транспорт </a>
         </li>
         <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link"> Смартфон HUEAWAY Mix 3 6/128GB </a>
+          <a class="breadcrumbs__link"> Смартфон SAMSUNG 6/128GB </a>
         </li>
       </ul>
     </div>
@@ -20,7 +20,7 @@
           <img
             width="570"
             height="570"
-            src="img/my-img/product-1.png"
+            src="img/my-img/product-7.png"
             srcset="img/phone-square@2x.jpg 2x"
             alt="Название товара"
           />
@@ -31,7 +31,7 @@
               <img
                 width="98"
                 height="98"
-                src="img/my-img/product-1.png"
+                src="img/my-img/product-7.png"
                 srcset="img/phone-square-1@2x.jpg 2x"
                 alt="Название товара"
               />
@@ -42,7 +42,7 @@
               <img
                 width="98"
                 height="98"
-                src="img/my-img/product-1.png"
+                src="img/my-img/product-7.png"
                 srcset="img/phone-square-2@2x.jpg 2x"
                 alt="Название товара"
               />
@@ -53,7 +53,7 @@
               <img
                 width="98"
                 height="98"
-                src="img/my-img/product-1.png"
+                src="img/my-img/product-7.png"
                 srcset="img/phone-square-3@2x.jpg 2x"
                 alt="Название товара"
               />
@@ -64,7 +64,7 @@
               <img
                 width="98"
                 height="98"
-                src="img/my-img/product-1.png"
+                src="img/my-img/product-7.png"
                 srcset="img/phone-square-4@2x.jpg 2x"
                 alt="Название товара"
               />
@@ -75,7 +75,7 @@
 
       <div class="item__info">
         <span class="item__code">Артикул: 150030</span>
-        <h2 class="item__title">Смартфон HUEAWAY Mix 3 6/128GB</h2>
+        <h2 class="item__title">Смартфон SAMSUNG 6/128GB</h2>
         <div class="item__form">
           <form class="form" action="#" method="POST">
             <b class="item__price"> 18 990 ₽ </b>
@@ -262,7 +262,9 @@
 <script>
 export default {
   name: 'AppProductPage',
-  props: ['pageParams']
+  props: {
+    currentPageParams: {},
+  },
 }
 </script>
 

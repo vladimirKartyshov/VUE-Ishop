@@ -14,7 +14,12 @@
       ></app-product-filter>
 
       <section class="catalog">
-        <app-product-list :products="products"></app-product-list>
+        <app-product-list
+          :products="products"
+          @gotoPage="
+            (pageName, pageParams) => $emit('gotoPage', pageName, pageParams)
+          "
+        ></app-product-list>
 
         <app-base-pagination
           v-model="page"
