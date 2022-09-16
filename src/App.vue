@@ -4,11 +4,7 @@
     <app-product-page v-else-if="currentPage === 'product'" />
     <app-not-found-page v-else /> -->
 
-    <component
-      :is="currentPageComponent"
-      :page-params="currentPageParams"
-      @gotoPage="(pageName, pageParams) => gotoPage(pageName, pageParams)"
-    />
+    <component :is="currentPageComponent" :page-params="currentPageParams" />
   </div>
 </template>
 
@@ -16,6 +12,7 @@
 import AppMainPage from './pages/MainPage.vue'
 import AppProductPage from './pages/ProductPage.vue'
 import AppNotFoundPage from './pages/NotFoundPage.vue'
+import eventBus from './eventBus'
 
 const routes = {
   main: 'AppMainPage',
@@ -44,6 +41,12 @@ export default {
     currentPageComponent() {
       return routes[this.currentPage] || 'NotFoundPage'
     },
+  },
+
+  created() {
+    eventBus.$on('gotoPage', (pageName, pageParams) =>
+      this.gotoPage(pageName, pageParams)
+    )
   },
 }
 </script>

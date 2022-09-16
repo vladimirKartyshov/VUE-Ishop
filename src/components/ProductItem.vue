@@ -4,7 +4,7 @@
       <a
         class="catalog__pic"
         href="#"
-        @click.prevent="$emit('gotoPage', 'product', {id: product.id})"
+        @click.prevent="gotoPage('product', {id: product.id})"
       >
         <img :src="product.image" />
       </a>
@@ -31,10 +31,19 @@
 </template>
 
 <script>
+import eventBus from '@/eventBus'
+
 export default {
   name: 'AppProductItem',
+
   data() {
     return {}
+  },
+
+  methods: {
+    gotoPage(pageName, pageParams) {
+      eventBus.$emit('gotoPage', pageName, pageParams)
+    },
   },
 
   props: ['product'],
