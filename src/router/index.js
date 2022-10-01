@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import AppMainPage from '@/pages/MainPage.vue'
 import AppNotFoundPage from '@/pages/NotFoundPage.vue'
 import AppProductPage from '@/pages/ProductPage.vue'
+import AppCartPage from '@/pages/CartPage.vue'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ const routes = [
     path: '/product/:id',
     name: 'product',
     component: AppProductPage,
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: AppCartPage,
   },
   {
     path: '*',

@@ -5733,6 +5733,11 @@ vue@^2.6.14:
     "@vue/compiler-sfc" "2.7.8"
     csstype "^3.1.0"
 
+vuex@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.0.0.tgz#98b4b5c4954b1c1c1f5b29fa0476a23580315814"
+  integrity sha512-/QPzbRtnj39bUYTRWfFScZ7RWXBxlaQxqfAWuHTKxJoxrBHPANaQNUhY4aUjBlLbAfOOJTOgx17gCcyX8h2AhQ==
+
 watchpack@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-2.4.0.tgz#fa33032374962c78113f93c7f2fb4c54c9862a5d"

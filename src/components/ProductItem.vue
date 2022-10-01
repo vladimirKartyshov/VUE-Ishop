@@ -30,11 +30,12 @@
 </template>
 
 <script>
-// import gotoPage from '@/helpers/gotoPage'
 import numberFormat from '@/helpers/numberFormat'
 
 export default {
   name: 'AppProductItem',
+
+  props: ['product'],
 
   data() {
     return {}
@@ -43,12 +44,6 @@ export default {
   filters: {
     numberFormat,
   },
-
-  // methods: {
-  //   gotoPage,
-  // },
-
-  props: ['product'],
 }
 </script>
 
