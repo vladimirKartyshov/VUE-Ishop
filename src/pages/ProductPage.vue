@@ -38,7 +38,12 @@
         <span class="item__code">Артикул: {{ product.id }}</span>
         <h2 class="item__title">{{ product.title }}</h2>
         <div class="item__form">
-          <form class="form" action="#" method="POST">
+          <form
+            class="form"
+            action="#"
+            method="POST"
+            @submit.prevent="addToCart"
+          >
             <b class="item__price"> {{ product.price | numberFormat }} р</b>
 
             <fieldset class="form__block">
@@ -135,21 +140,33 @@
 
             <div class="item__row">
               <div class="form__counter">
-                <button type="button" aria-label="Убрать один товар">
+                <button
+                  @click="discrement()"
+                  type="button"
+                  aria-label="Убрать один товар"
+                >
                   <svg width="12" height="12" fill="currentColor">
                     <use xlink:href="#icon-minus"></use>
                   </svg>
                 </button>
 
-                <input type="text" value="1" name="count" />
+                <input
+                  type="text"
+                  value="value"
+                  v-model="productAmount"
+                  name="count"
+                />
 
-                <button type="button" aria-label="Добавить один товар">
+                <button
+                  @click="increment()"
+                  type="button"
+                  aria-label="Добавить один товар"
+                >
                   <svg width="12" height="12" fill="currentColor">
                     <use xlink:href="#icon-plus"></use>
                   </svg>
                 </button>
               </div>
-
               <button class="button button--primery" type="submit">
                 В корзину
               </button>
@@ -229,6 +246,13 @@ import numberFormat from '@/helpers/numberFormat'
 export default {
   name: 'AppProductPage',
 
+  data() {
+    return {
+      // counter: 1,
+      productAmount: 1,
+    }
+  },
+
   filters: {
     numberFormat,
   },
@@ -244,9 +268,22 @@ export default {
     },
   },
 
-  // methods: {
-  //   gotoPage,
-  // },
+  methods: {
+    addToCart() {
+      this.$store.commit('addProductToCart', {
+        productId: this.product.id,
+        amount: this.productAmount,
+      })
+    },
+    //(+/-)
+    //:value="counter" 155 строка без v-model
+    increment() {
+      this.productAmount++
+    },
+    discrement() {
+      this.productAmount--
+    },
+  },
 }
 </script>
 
