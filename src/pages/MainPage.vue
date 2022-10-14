@@ -27,10 +27,11 @@
 </template>
 
 <script>
-import products from '@/data/products'
 import AppProductList from '@/components/ProductList.vue'
 import AppBasePagination from '@/components/BasePagination.vue'
 import AppProductFilter from '@/components/ProductFilter.vue'
+import axios from 'axios'
+import {API_BASE_URL} from '../config'
 
 export default {
   name: 'AppMainPage',
@@ -49,42 +50,99 @@ export default {
 
       page: 1,
       productsPerPage: 6,
+
+      productsData: null,
     }
   },
 
   computed: {
-    filteredProducts() {
-      let filteredProducts = products
+    // filteredProducts() {
+    //   let filteredProducts = products
 
-      if (this.filterPriceFrom > 0) {
-        filteredProducts = filteredProducts.filter(
-          (product) => product.price > this.filterPriceFrom
-        )
-      }
-      if (this.filterPriceTo > 0) {
-        filteredProducts = filteredProducts.filter(
-          (product) => product.price < this.filterPriceTo
-        )
-      }
-      if (this.filterCategoryId > 0) {
-        filteredProducts = filteredProducts.filter(
-          (product) => product.categoryId === this.filterCategoryId
-        )
-      }
-      if (this.startColor && this.startColor.length) {
-        filteredProducts = filteredProducts.filter(
-          (product) => product.colors.indexOf(this.startColor) > -1
-        )
-      }
+    //   if (this.filterPriceFrom > 0) {
+    //     filteredProducts = filteredProducts.filter(
+    //       (product) => product.price > this.filterPriceFrom
+    //     )
+    //   }
+    //   if (this.filterPriceTo > 0) {
+    //     filteredProducts = filteredProducts.filter(
+    //       (product) => product.price < this.filterPriceTo
+    //     )
+    //   }
+    //   if (this.filterCategoryId > 0) {
+    //     filteredProducts = filteredProducts.filter(
+    //       (product) => product.categoryId === this.filterCategoryId
+    //     )
+    //   }
+    //   if (this.startColor && this.startColor.length) {
+    //     filteredProducts = filteredProducts.filter(
+    //       (product) => product.colors.indexOf(this.startColor) > -1
+    //     )
+    //   }
 
-      return filteredProducts
-    },
+    //   return filteredProducts
+    // },
+
     products() {
-      const offset = (this.page - 1) * this.productsPerPage
-      return this.filteredProducts.slice(offset, offset + this.productsPerPage)
+      //код для вывода из локальных данных
+      // const offset = (this.page - 1) * this.productsPerPage
+      // return this.filteredProducts.slice(offset, offset + this.productsPerPage)
+
+      return this.productsData
+        ? this.productsData.data.items.map((product) => {
+            return {
+              ...product,
+              image: product.image.file.url,
+            }
+          })
+        : []
     },
     countProducts() {
-      return this.filteredProducts.length
+      // return this.filteredProducts.length
+
+      return this.productsData ? this.productsData.data.pagination.total : 0
+    },
+  },
+
+  methods: {
+    loadProducts() {
+      clearTimeout(this.loadProductsTimer)
+      this.loadProductsTimer = setTimeout(() => {
+        axios
+          .get(API_BASE_URL + '/products', {
+            params: {
+              page: this.page,
+              limit: this.productsPerPage,
+              categoryId: this.filterCategoryId,
+              minPrice: this.filterPriceFrom,
+              maxPrice: this.filterPriceTo,
+              colorId: this.startColor,
+            },
+          })
+          .then((response) => (this.productsData = response))
+      }, 0)
+    },
+  },
+
+  created() {
+    this.loadProducts()
+  },
+
+  watch: {
+    page() {
+      this.loadProducts()
+    },
+    filterPriceFrom() {
+      this.loadProducts()
+    },
+    filterPriceTo() {
+      this.loadProducts()
+    },
+    filterCategoryId() {
+      this.loadProducts()
+    },
+    startColor() {
+      this.loadProducts()
     },
   },
 }

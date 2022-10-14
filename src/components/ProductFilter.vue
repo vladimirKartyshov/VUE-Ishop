@@ -118,7 +118,8 @@
 </template>
 
 <script>
-import categories from '@/data/categories'
+import axios from 'axios'
+import {API_BASE_URL} from '../config'
 
 export default {
   name: 'AppProductFilterer',
@@ -131,53 +132,17 @@ export default {
       currentCategoryId: 0,
       currentColor: 0,
 
-      colors: [
-        '#73b6ea',
-        '#ffbe15',
-        '#939393',
-        '#8be000',
-        '#ff6b00',
-        '#fff',
-        '#222',
-      ],
-      dataSizes: [
-        {
-          id: 1,
-          size: 8,
-          quantity: '(313)',
-        },
-        {
-          id: 2,
-          size: 16,
-          quantity: '(505)',
-        },
-        {
-          id: 3,
-          size: 32,
-          quantity: '(620)',
-        },
-        {
-          id: 4,
-          size: 64,
-          quantity: '(711)',
-        },
-        {
-          id: 5,
-          size: 128,
-          quantity: '(113)',
-        },
-        {
-          id: 6,
-          size: 256,
-          quantity: '(891)',
-        },
-      ],
+      categoriesData: null,
+      colorsData: null,
     }
   },
 
   computed: {
     categories() {
-      return categories
+      return this.categoriesData ? this.categoriesData.items : []
+    },
+    colors() {
+      return this.colorsData ? this.colorsData.items : []
     },
   },
 
@@ -209,6 +174,20 @@ export default {
       this.$emit('update:categoryId', 0)
       this.$emit('update:startColor', 0)
     },
+    loadCategories() {
+      axios
+        .get(API_BASE_URL + '/productCategories')
+        .then((response) => (this.categoriesData = response.data))
+    },
+    loadColors() {
+      axios
+        .get(API_BASE_URL + '/colors')
+        .then((response) => (this.colorsData = response.data))
+    },
+  },
+
+  created() {
+    this.loadCategories(), this.loadColors()
   },
 }
 </script>
