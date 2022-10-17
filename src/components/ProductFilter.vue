@@ -67,10 +67,13 @@
                   class="colors__radio sr-only"
                   type="radio"
                   name="color"
-                  :value="color"
-                  :id="color"
+                  :value="color.code"
+                  :id="color.id"
                 />
-                <span class="colors__value" :style="{backgroundColor: color}">
+                <span
+                  class="colors__value"
+                  :style="{backgroundColor: color.code}"
+                >
                 </span>
               </label>
             </li>

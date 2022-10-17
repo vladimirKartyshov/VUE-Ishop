@@ -18,9 +18,10 @@
               class="colors__radio sr-only"
               name="color"
               type="radio"
-              value="color"
+              :value="color.code"
+              :id="color.id"
             />
-            <span class="colors__value" :style="{backgroundColor: color}">
+            <span class="colors__value" :style="{backgroundColor: color.code}">
             </span>
           </label>
         </li>
