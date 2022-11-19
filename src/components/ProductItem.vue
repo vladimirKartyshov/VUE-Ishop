@@ -12,7 +12,11 @@
       </h3>
       <span class="catalog__price"> {{ product.price | numberFormat }} р</span>
       <ul class="colors colors--black">
-        <li class="colors__item" v-for="color in product.colors" :key="color">
+        <li
+          class="colors__item"
+          v-for="(color, idx) in product.colors"
+          :key="idx"
+        >
           <label class="colors__label">
             <input
               class="colors__radio sr-only"

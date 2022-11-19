@@ -82,7 +82,7 @@
 
         <fieldset class="form__block">
           <legend class="form__legend">Объемб в ГБ</legend>
-          <ul class="check-list">
+          <!-- <ul class="check-list">
             <li
               class="check-list__item"
               v-for="description in dataSizes"
@@ -102,7 +102,7 @@
                 </span>
               </label>
             </li>
-          </ul>
+          </ul> -->
         </fieldset>
 
         <button class="filter__submit button button--primery" type="submit">

@@ -215,7 +215,7 @@ export default {
     -webkit-transform: rotate(360deg);
   }
 }
-/* @keyframes spin {
+@keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
   }
