@@ -269,7 +269,7 @@ export default {
 
   computed: {
     product() {
-      return this.productData
+      return this.productData 
     },
     category() {
       return this.productData.category
@@ -295,15 +295,31 @@ export default {
       this.productLoading = true
       this.productLoadingFailed = false
       axios
-        .get(API_BASE_URL + '/api/products/' + this.$route.params.id)
+        .get(API_BASE_URL + '/products/' + this.$route.params.id)
         .then((response) => (this.productData = response.data))
         .catch(() => (this.productLoadingFailed = true))
         .then((this.productLoading = false))
     },
   },
+  // 1 вариант
+  // created() {
+  //   this.loadProduct()
+  // },
 
-  created() {
-    this.loadProduct()
+  // watch: {
+  //   '$route.params.id'() {
+  //     this.loadProduct();
+  //   },
+  // },
+
+  //1 вариант можно переписать так
+  watch: {
+    '$route.params.id': {
+      handler() {
+        this.loadProduct()
+      },
+      immediate: true,
+    },
   },
 }
 </script>
