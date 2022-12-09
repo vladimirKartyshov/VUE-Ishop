@@ -270,6 +270,7 @@ export default {
   computed: {
     product() {
       return this.productData 
+      
     },
     category() {
       return this.productData.category
