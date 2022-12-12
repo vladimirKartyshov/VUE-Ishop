@@ -130,7 +130,7 @@ export default {
   created() {
     const userAccessKey = localStorage.getItem('userAccessKey')
     if (userAccessKey) {
-      this.updateUserAccessKey('userAccessKey')
+      this.updateUserAccessKey(userAccessKey)
     }
 
     // this.$store.dispatch('loadCart')// mapActions code ...

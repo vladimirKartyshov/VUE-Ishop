@@ -8,11 +8,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cartProducts: [],
+    cartProductsData: [],
+
+    userAccessKey: null,
   },
-
-  userAccessKey: null,
-
-  cartProductsData: [],
 
   mutations: {
     addProductToCart(state, {productId, amount}) {
@@ -68,8 +67,8 @@ export default new Vuex.Store({
           ...item,
           product: {
             ...product,
-            image: product.image.file.url
-          }
+            image: product.image.file.url,
+          },
         }
       })
     },

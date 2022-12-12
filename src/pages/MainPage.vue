@@ -140,7 +140,7 @@ export default {
           .then((response) => (this.productsData = response))
           .catch(() => (this.productsLoadingFailed = true))
           .then(() => (this.productsLoading = false))
-      }, 2000)
+      }, 1000)
     },
   },
 
