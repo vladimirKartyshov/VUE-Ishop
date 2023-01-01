@@ -10,6 +10,8 @@ export default new Vuex.Store({
     cartProducts: [],
     cartProductsData: [],
 
+    productLoading: true,
+
     userAccessKey: null,
   },
 
@@ -54,6 +56,9 @@ export default new Vuex.Store({
         }
       })
     },
+    loadCartStatus(state, value) {
+      state.productLoading = value;
+    },
   },
 
   getters: {
@@ -82,21 +87,25 @@ export default new Vuex.Store({
 
   actions: {
     loadCart(context) {
-      axios
-        .get(API_BASE_URL + '/baskets', {
-          params: {
-            userAccessKey: context.state.userAccessKey,
-          },
-        })
+      return (new Promise((resolve) => setTimeout(resolve, 500)))
+        .then(() => {
+          return axios.get(API_BASE_URL + '/baskets', {
+            params: {
+              userAccessKey: context.state.userAccessKey,
+            },
+          })
         .then((response) => {
           if (!context.state.userAccessKey) {
             localStorage.setItem('userAccessKey', response.data.user.accessKey)
             context.commit('updateUserAccessKey', response.data.user.accessKey)
           }
 
-          context.commit('updateCartProductsData', response.data.itmes)
+          context.commit('updateCartProductsData', response.data.items)
           context.commit('syncCartProducts')
+          context.commit('loadCartStatus', false);
         })
+      })
+     
     },
   },
 })

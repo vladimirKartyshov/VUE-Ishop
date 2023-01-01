@@ -1,6 +1,10 @@
 <template>
   <div>
     <main class="content container">
+      <main class="content container" v-if="productLoading">
+        <app-spinner />
+      </main>
+
       <div class="content__top">
         <ul class="breadcrumbs">
           <li class="breadcrumbs__item">
@@ -57,11 +61,18 @@
 <script>
 import numberFormat from '@/helpers/numberFormat'
 import {mapGetters} from 'vuex'
+import AppSpinner from '@/components/Spinner.vue'
 import AppCartItem from '@/components/CartItem.vue'
 
 export default {
   name: 'AppCartPage',
-  components: {AppCartItem},
+  components: {AppCartItem, AppSpinner},
+
+  data() {
+    return {
+      productLoading: false,
+    }
+  },
 
   filters: {numberFormat},
 
@@ -70,6 +81,15 @@ export default {
       products: 'cartDetailProducts',
       totalPrice: 'cartTotalPrice',
     }),
+  },
+
+  watch: {
+    '$store.state.productLoading': {
+      handler() {
+        this.productLoading = this.$store.state.productLoading
+      },
+      immediate: true,
+    },
   },
 }
 </script>

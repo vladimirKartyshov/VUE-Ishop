@@ -1,6 +1,6 @@
 <template>
   <main class="content container" v-if="productLoading">
-    Загрузка товара...
+    <app-spinner />
   </main>
   <main class="content container" v-else-if="!productData">
     Не удалось загрузить товар
@@ -34,7 +34,7 @@
           <img
             width="570"
             height="570"
-            :src="product.image"
+            :src="product.image.file.url"
             :alt="product.title"
           />
         </div>
@@ -244,12 +244,16 @@
 </template>
 
 <script>
+import AppSpinner from '@/components/Spinner.vue'
 import numberFormat from '@/helpers/numberFormat'
 import axios from 'axios'
 import {API_BASE_URL} from '@/config'
 
 export default {
   name: 'AppProductPage',
+  components: {
+    AppSpinner,
+  },
 
   data() {
     return {
@@ -269,7 +273,7 @@ export default {
 
   computed: {
     product() {
-      return this.productData 
+      return this.productData
     },
     category() {
       return this.productData.category
@@ -294,11 +298,13 @@ export default {
     loadProduct() {
       this.productLoading = true
       this.productLoadingFailed = false
-      axios
-        .get(API_BASE_URL + '/products/' + this.$route.params.id)
-        .then((response) => (this.productData = response.data))
-        .catch(() => (this.productLoadingFailed = true))
-        .then((this.productLoading = false))
+      setTimeout(() => {
+        axios
+          .get(API_BASE_URL + '/products/' + this.$route.params.id)
+          .then((response) => (this.productData = response.data))
+          .catch(() => (this.productLoadingFailed = true))
+          .then((this.productLoading = false))
+      }, 500)
     },
   },
   // 1 вариант
