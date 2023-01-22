@@ -18,7 +18,7 @@
           <app-spinner />
           <h3 class="textloadcolor">Загрузка товаров....</h3>
         </div>
-        <div v-if="productsLoadingFailed">
+        <div class="textloadcolor" v-if="productsLoadingFailed">
           Произошла ошибка при загрузке!!!
           <button class="trybtn" @click.prevent="loadProducts">
             Try again

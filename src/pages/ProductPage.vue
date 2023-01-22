@@ -173,12 +173,23 @@
                   </svg>
                 </button>
               </div>
-              <button class="button button--primery" type="submit">
+              <button
+                class="button button--primery"
+                type="submit"
+                :disabled="productAddSending"
+              >
                 В корзину
               </button>
             </div>
           </form>
         </div>
+      </div>
+
+      <div class="textloadcolor" v-show="productAdded">
+        <h3>Товар добавлен в корзину</h3>
+      </div>
+      <div class="textloadcolor" v-show="productAddSending">
+        <h3>Добовляется товар в корзину....</h3>
       </div>
 
       <div class="item__desc">
@@ -248,6 +259,7 @@ import AppSpinner from '@/components/Spinner.vue'
 import numberFormat from '@/helpers/numberFormat'
 import axios from 'axios'
 import {API_BASE_URL} from '@/config'
+import {mapActions} from 'vuex'
 
 export default {
   name: 'AppProductPage',
@@ -259,11 +271,13 @@ export default {
     return {
       // counter: 1,
       productAmount: 1,
-
       productData: null,
 
       productLoading: false,
       productLoadingFailed: false,
+
+      productAdded: false,
+      productAddSending: false,
     }
   },
 
@@ -281,10 +295,18 @@ export default {
   },
 
   methods: {
+    ...mapActions(['addProductToCart']),
+
     addToCart() {
-      this.$store.commit('addProductToCart', {
+      this.productAdded = false
+      this.productAddSending = true
+
+      this.addProductToCart({
         productId: this.product.id,
         amount: this.productAmount,
+      }).then(() => {
+        this.productAdded = true
+        this.productAddSending = false
       })
     },
     //(+/-)
@@ -330,4 +352,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.textloadcolor {
+  color: #018df7;
+}
+</style>
