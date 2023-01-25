@@ -51,7 +51,7 @@
 
 <script>
 import numberFormat from '@/helpers/numberFormat'
-import {mapMutations} from 'vuex'
+import {mapActions} from 'vuex'
 
 export default {
   name: 'AppCartItem',
@@ -66,7 +66,7 @@ export default {
         return this.item.amount
       },
       set(value) {
-        this.$store.commit('updateCartProductAmount', {
+        this.$store.dispatch('updateCartProductAmount', {
           productId: this.item.productId,
           amount: value,
         })
@@ -75,7 +75,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations({deleteProduct: 'deletCartProduct'}),
+    ...mapActions({deleteProduct: 'deletCartProduct'}),
   },
 }
 </script>

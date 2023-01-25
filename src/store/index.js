@@ -133,5 +133,52 @@ export default new Vuex.Store({
           })
       })
     },
+    updateCartProductAmount(context, {productId, amount}) {
+      context.commit('updateCartProductAmount', {productId, amount})
+
+      if (amount < 1) {
+        return
+      }
+
+      return axios
+        .put(
+          API_BASE_URL + '/baskets/products',
+          {
+            productId: productId,
+            quantity: amount,
+          },
+          {
+            params: {
+              userAccessKey: context.state.userAccessKey,
+            },
+          }
+        )
+        .then((response) => {
+          context.commit('updateCartProductsData', response.data.items)
+        })
+        .catch(() => {
+          context.commit('syncCartProducts')
+        })
+    },
+    deletCartProduct(context, productId) {
+      context.commit('updateCartProductAmount', productId)
+
+      return axios
+        .delete(
+          API_BASE_URL + '/baskets/products',
+          {
+            productId: productId,
+          },
+          {
+            params: {
+              userAccessKey: context.state.userAccessKey,
+            },
+          }
+        )
+        .then((response) => {
+          context.commit('updateCartProductsData', response.data.items)
+          context.commit('syncCartProducts')
+        })
+    },
   },
 })
