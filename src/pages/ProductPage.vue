@@ -189,6 +189,9 @@
         <h3>Товар добавлен в корзину</h3>
       </div>
       <div class="textloadcolor" v-show="productAddSending">
+        <div>
+          <app-spinner />
+        </div>
         <h3>Добовляется товар в корзину....</h3>
       </div>
 
