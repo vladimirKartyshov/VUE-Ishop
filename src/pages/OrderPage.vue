@@ -27,7 +27,10 @@
           </ul>
 
           <h1 class="content__title">Корзина</h1>
-          <span class="content__info"> 3 товара </span>
+          <span class="content__info">
+            {{ $store.state.cartProducts.length }}
+            товара
+          </span>
         </div>
 
         <section class="cart">
@@ -41,53 +44,35 @@
                   placeholder="Введите ваше полное имя"
                 />
 
-                <label class="form__label">
-                  <input
-                    v-model="formData.address"
-                    class="form__input"
-                    type="text"
-                    name="address"
-                    placeholder="Введите ваш адрес"
-                  />
-                  <span class="form__value">Адрес доставки</span>
-                  <span class="form__error" v-if="formError.address">{{
-                    formError.address
-                  }}</span>
-                </label>
+                <app-base-form-text
+                  v-model="formData.name"
+                  :error="formError.name"
+                  type="text"
+                  title="Адрес доставки"
+                  placeholder="Введите ваш адрес"
+                />
 
-                <label class="form__label">
-                  <input
-                    v-model="formData.phone"
-                    class="form__input"
-                    type="tel"
-                    name="phone"
-                    placeholder="Введите ваш телефон"
-                  />
-                  <span class="form__value">Телефон</span>
-                  <span class="form__error" v-if="formError.phone">{{
-                    formError.phone
-                  }}</span>
-                </label>
+                <app-base-form-text
+                  v-model="formData.name"
+                  :error="formError.name"
+                  type="tel"
+                  title="Телефон"
+                  placeholder="Введите ваш телефон"
+                />
 
-                <label class="form__label">
-                  <input
-                    v-model="formData.email"
-                    class="form__input"
-                    type="email"
-                    name="email"
-                    placeholder="Введи ваш Email"
-                  />
-                  <span class="form__value">Email</span>
-                  <span class="form__error" v-if="formError.email">{{
-                    formError.email
-                  }}</span>
-                </label>
+                <app-base-form-text
+                  v-model="formData.name"
+                  :error="formError.name"
+                  type="email"
+                  title="Email"
+                  placeholder="Введи ваш Email"
+                />
 
                 <app-base-form-text-area
-                  title="Комментарий к заказу"
-                  placeholder="Ваши пожелания"
                   v-model="formData.comments"
                   :error="formError.comments"
+                  title="Комментарий к заказу"
+                  placeholder="Ваши пожелания"
                 />
               </div>
 
@@ -153,17 +138,15 @@
               </div>
             </div>
 
+            //make component OrderList
             <div class="cart__block">
               <ul class="cart__orders">
                 <li class="cart__order">
-                  <h3>Смартфон Xiaomi Redmi Note 7 Pro 6/128GB</h3>
-                  <b>18 990 ₽</b>
-                  <span>Артикул: 150030</span>
                 </li>
                 <li class="cart__order">
                   <h3>Гироскутер Razor Hovertrax 2.0ii</h3>
                   <b>4 990 ₽</b>
-                  <span>Артикул: 150030</span>
+                  <span>Артикул: 000000</span>
                 </li>
                 <li class="cart__order">
                   <h3>Электрический дрифт-карт Razor Lil’ Crazy</h3>
@@ -297,17 +280,25 @@
 <script>
 import AppBaseFormText from '@/components/BaseFormText.vue'
 import AppBaseFormTextArea from '@/components/BaseFormTextArea.vue'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'AppOrderPage',
 
-  components: {AppBaseFormText, AppBaseFormTextArea},
+  components: {AppBaseFormText, AppBaseFormTextArea,},
 
   data() {
     return {
       formData: {},
       formError: {},
     }
+  },
+
+  computed: {
+    ...mapGetters({
+      products: 'cartDetailProducts',
+      totalPrice: 'cartTotalPrice',
+    }),
   },
 }
 </script>

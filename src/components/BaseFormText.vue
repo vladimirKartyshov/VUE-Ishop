@@ -3,7 +3,7 @@
     <input
       v-model="dataValue"
       class="form__input"
-      type="text"
+      :type="type"
       name="name"
       :placeholder="placeholder"
     />
@@ -11,25 +11,15 @@
 </template>
 
 <script>
-import AppBaseFormField from '@/components/BaseFormField.vue'
+import formFieldMixin from '@/mixins/formFieldMixin'
 
 export default {
-  name: 'AppBaseFormText',
-
-  props: ['title', 'error', 'placeholder', 'value'],
-
-  components: {AppBaseFormField},
-
-  computed: {
-    dataValue: {
-      get() {
-        return this.value
-      },
-      set(value) {
-        this.$emit('input', value)
-      },
+  props: {
+    type: {
+      default: 'text',
     },
   },
+  mixins: [formFieldMixin],
 }
 </script>
 
