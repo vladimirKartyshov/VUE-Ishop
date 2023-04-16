@@ -34,7 +34,12 @@
         </div>
 
         <section class="cart">
-          <form class="cart__form form" action="#" method="POST">
+          <form
+            class="cart__form form"
+            action="#"
+            method="POST"
+            @submit.prevent="order"
+          >
             <div class="cart__field">
               <div class="cart__data">
                 <app-base-form-text
@@ -45,32 +50,32 @@
                 />
 
                 <app-base-form-text
-                  v-model="formData.name"
-                  :error="formError.name"
+                  v-model="formData.address"
+                  :error="formError.address"
                   type="text"
                   title="Адрес доставки"
                   placeholder="Введите ваш адрес"
                 />
 
                 <app-base-form-text
-                  v-model="formData.name"
-                  :error="formError.name"
+                  v-model="formData.phone"
+                  :error="formError.phone"
                   type="tel"
                   title="Телефон"
                   placeholder="Введите ваш телефон"
                 />
 
                 <app-base-form-text
-                  v-model="formData.name"
-                  :error="formError.name"
+                  v-model="formData.email"
+                  :error="formError.email"
                   type="email"
                   title="Email"
                   placeholder="Введи ваш Email"
                 />
 
                 <app-base-form-text-area
-                  v-model="formData.comments"
-                  :error="formError.comments"
+                  v-model="formData.comment"
+                  :error="formError.comment"
                   title="Комментарий к заказу"
                   placeholder="Ваши пожелания"
                 />
@@ -141,8 +146,7 @@
             //make component OrderList
             <div class="cart__block">
               <ul class="cart__orders">
-                <li class="cart__order">
-                </li>
+                <li class="cart__order"></li>
                 <li class="cart__order">
                   <h3>Гироскутер Razor Hovertrax 2.0ii</h3>
                   <b>4 990 ₽</b>
@@ -164,11 +168,10 @@
                 Оформить заказ
               </button>
             </div>
-            <div class="cart__error form__error-block">
+            <div class="cart__error form__error-block" v-if="formErrorMessage">
               <h4>Заявка не отправлена!</h4>
               <p>
-                Похоже произошла ошибка. Попробуйте отправить снова или
-                перезагрузите страницу.
+                {{ formErrorMessage }}
               </p>
             </div>
           </form>
@@ -281,17 +284,47 @@
 import AppBaseFormText from '@/components/BaseFormText.vue'
 import AppBaseFormTextArea from '@/components/BaseFormTextArea.vue'
 import {mapGetters} from 'vuex'
+import axios from 'axios'
+import {API_BASE_URL} from '@/config'
 
 export default {
   name: 'AppOrderPage',
 
-  components: {AppBaseFormText, AppBaseFormTextArea,},
+  components: {AppBaseFormText, AppBaseFormTextArea},
 
   data() {
     return {
       formData: {},
       formError: {},
+      formErrorMessage: '',
     }
+  },
+
+  methods: {
+    order() {
+      this.formError = {}
+      this.formErrorMessage = ''
+
+      axios
+        .post(
+          API_BASE_URL + '/orders',
+          {
+            ...this.formData,
+          },
+          {
+            params: {
+              userAccessKey: this.$store.state.userAccessKey,
+            },
+          }
+        )
+        .then(() => {
+          this.$store.commit('resetCart')
+        })
+        .catch((error) => {
+          this.formError = error.response.data.error.request || {}
+          this.formErrorMessage = error.response.data.error.message
+        })
+    },
   },
 
   computed: {
