@@ -13,9 +13,15 @@ export default new Vuex.Store({
     productLoading: true,
 
     userAccessKey: null,
+
+    orderInfo: null,
   },
 
   mutations: {
+    updateOrderInfo(state, orderInfo) {
+      state.orderInfo = orderInfo
+    },
+
     resetCart(state) {
       state.cartProducts = []
       state.cartProductsData = []
