@@ -31,7 +31,7 @@ const routes = [
     component: AppOrderPage,
   },
   {
-    path: '/order/info',
+    path: '/order/:id',
     name: 'orderInfo',
     component: AppOrderInfoPage,
   },

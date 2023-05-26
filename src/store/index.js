@@ -96,6 +96,18 @@ export default new Vuex.Store({
   },
 
   actions: {
+    loadOrderInfo(context, orderId) {
+        return axios
+          .get(API_BASE_URL + '/orders'/ + orderId, {
+            params: {
+              userAccessKey: context.state.userAccessKey,
+            },
+          })
+          .then(response => {
+            context.commit('updateOrderInfo', response.data)
+          })
+    },
+
     loadCart(context) {
       return new Promise((resolve) => setTimeout(resolve, 500)).then(() => {
         return axios
