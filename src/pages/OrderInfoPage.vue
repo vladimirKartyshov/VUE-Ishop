@@ -72,9 +72,8 @@
             <div class="cart__block">
               <ul class="cart__orders">
                 <li class="cart__order">
-                  //дальше не выводятся данные, думаю разные форматы (массив и
-                  объект)
-                  <!-- <h3>{{ $store.state.orderInfo.basket.items}}</h3> -->
+                  //дальше не выводятся данные корректно
+                  <h3>{{ $store.state.orderInfo.basket.items}}</h3>
                   <b>{{ $store.state.orderInfo.totalPrice }}</b>
                   <span>Артикул: {{ $store.state.orderInfo.basket.id }}</span>
                 </li>
