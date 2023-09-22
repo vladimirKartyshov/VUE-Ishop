@@ -55,8 +55,8 @@ export default new Vuex.Store({
     updateUserAccessKey(state, accessKey) {
       state.userAccessKey = accessKey
     },
-    updateCartProductsData(state, itmes) {
-      state.cartProductsData = itmes
+    updateCartProductsData(state, items) {
+      state.cartProductsData = items
     },
     syncCartProducts(state) {
       state.cartProducts = state.cartProductsData.map((item) => {

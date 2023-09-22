@@ -142,21 +142,21 @@
                 </ul>
               </div>
             </div>
+            {{ $store.state.cartProductsData }}
 
-            //make component OrderList
             <div class="cart__block">
               <ul class="cart__orders">
                 <li class="cart__order"></li>
                 <li class="cart__order">
-                  <h3>Гироскутер Razor Hovertrax 2.0ii</h3>
-                  <b>4 990 ₽</b>
+                  <h3>{{ $store.state.cartProductsData }}</h3>
+                  <b>{{ $store.state.cartProductsData.price }}</b>
                   <span>Артикул: 000000</span>
                 </li>
-                <li class="cart__order">
+                <!-- <li class="cart__order">
                   <h3>Электрический дрифт-карт Razor Lil’ Crazy</h3>
                   <b>8 990 ₽</b>
                   <span>Артикул: 150030</span>
-                </li>
+                </li> -->
               </ul>
 
               <div class="cart__total">
