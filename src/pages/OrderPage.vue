@@ -10,8 +10,6 @@
     </head>
 
     <body>
-      <!-- <header class="header"></header> -->
-
       <main class="content container">
         <div class="content__top">
           <ul class="breadcrumbs">
@@ -142,26 +140,26 @@
                 </ul>
               </div>
             </div>
-            {{ $store.state.cartProductsData }}
 
             <div class="cart__block">
               <ul class="cart__orders">
-                <li class="cart__order"></li>
-                <li class="cart__order">
-                  <h3>{{ $store.state.cartProductsData }}</h3>
-                  <b>{{ $store.state.cartProductsData.price }}</b>
-                  <span>Артикул: 000000</span>
+                <li
+                  class="cart__order"
+                  v-for="item in products"
+                  :key="item.productId"
+                >
+                  <h3>{{ item.product.title }}</h3>
+                  <b>{{ item.product.price }}</b>
+                  <span>{{ item.productId }}</span>
                 </li>
-                <!-- <li class="cart__order">
-                  <h3>Электрический дрифт-карт Razor Lil’ Crazy</h3>
-                  <b>8 990 ₽</b>
-                  <span>Артикул: 150030</span>
-                </li> -->
               </ul>
 
               <div class="cart__total">
                 <p>Доставка: <b>500 ₽</b></p>
-                <p>Итого: <b>3</b> товара на сумму <b>37 970 ₽</b></p>
+                <p>
+                  Итого: <b>{{ $store.state.cartProducts.length }}</b> товара на
+                  сумму <b>{{ totalPrice }}</b>
+                </p>
               </div>
 
               <button class="cart__button button button--primery" type="submit">
