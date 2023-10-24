@@ -71,17 +71,23 @@
 
             <div class="cart__block">
               <ul class="cart__orders">
-                <li class="cart__order">
-                  //дальше не выводятся данные корректно
-                  <h3>{{ $store.state.orderInfo.basket.id}}</h3>
-                  <b>{{ $store.state.orderInfo.totalPrice }}</b>
-                  <span>Артикул: {{ $store.state.orderInfo.basket.id }}</span>
+                <li
+                  class="cart__order"
+                  v-for="item in products"
+                  :key="item.productId"
+                >
+                  <h3>{{ item.product.title }}</h3>
+                  <b>{{ item.product.price }}</b>
+                  <span>Артикул: {{ item.productId }}</span>
                 </li>
               </ul>
 
               <div class="cart__total">
                 <p>Доставка: <b>500 ₽</b></p>
-                <p>Итого: <b></b> товара на сумму <b>37 970 ₽</b></p>
+                <p>
+                  Итого: <b>{{ products.length }}</b> товара на сумму
+                  <b>{{ $store.state.orderInfo.totalPrice }}</b>
+                </p>
               </div>
             </div>
           </form>
@@ -191,6 +197,8 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: 'AppOrderInfoPage',
 
@@ -203,6 +211,10 @@ export default {
     }
 
     this.$store.dispatch('loadOrderInfo', this.$route.params.id)
+  },
+
+  computed: {
+    ...mapGetters({products: 'orderInfoBasket'}),
   },
 }
 </script>

@@ -150,14 +150,14 @@
                 >
                   <h3>{{ item.product.title }}</h3>
                   <b>{{ item.product.price }}</b>
-                  <span>{{ item.productId }}</span>
+                  <span>Артикул {{ item.productId }}</span>
                 </li>
               </ul>
 
               <div class="cart__total">
                 <p>Доставка: <b>500 ₽</b></p>
                 <p>
-                  Итого: <b>{{ $store.state.cartProducts.length }}</b> товара на
+                  Итого: <b>{{ products.length }}</b> товара на
                   сумму <b>{{ totalPrice }}</b>
                 </p>
               </div>

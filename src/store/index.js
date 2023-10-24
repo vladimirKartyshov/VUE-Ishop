@@ -26,7 +26,7 @@ export default new Vuex.Store({
       state.cartProducts = []
       state.cartProductsData = []
     },
-    
+
     updateCartProductAmount(state, {productId, amount}) {
       const item = state.cartProducts.find(
         (item) => item.productId === productId
@@ -81,19 +81,28 @@ export default new Vuex.Store({
         0
       )
     },
+    orderInfoBasket(state) {
+      return state.orderInfo
+        ? state.orderInfo.basket.items.map((item) => ({
+            ...item,
+            productId: item.product.id,
+            amount: item.quantity,
+          }))
+        : []
+    },
   },
 
   actions: {
     loadOrderInfo(context, orderId) {
-        return axios
-          .get(API_BASE_URL + '/orders'/ + orderId, {
-            params: {
-              userAccessKey: context.state.userAccessKey,
-            },
-          })
-          .then(response => {
-            context.commit('updateOrderInfo', response.data)
-          })
+      return axios
+        .get(API_BASE_URL + '/orders' / +orderId, {
+          params: {
+            userAccessKey: context.state.userAccessKey,
+          },
+        })
+        .then((response) => {
+          context.commit('updateOrderInfo', response.data)
+        })
     },
 
     loadCart(context) {
