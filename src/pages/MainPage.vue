@@ -5,6 +5,13 @@
       <span class="content__info"> 152 товара </span>
     </div>
 
+    <div class="content__top content__top--catalog">
+      <h1>Выбор кол-ва товаров на странице</h1>
+      <button class="butt" @click.prevent="loadProducts9()">9</button>
+      <button class="butt" @click.prevent="loadProducts18()">18</button>
+      <button class="butt" @click.prevent="loadProducts27()">27</button>
+    </div>
+
     <div class="content__catalog">
       <app-product-filter
         :price-from.sync="filterPriceFrom"
@@ -63,6 +70,9 @@ export default {
 
       page: 1,
       productsPerPage: 6,
+      productsPerPage9: 9,
+      productsPerPage18: 18,
+      productsPerPage27: 27,
 
       productsData: null,
 
@@ -72,38 +82,7 @@ export default {
   },
 
   computed: {
-    // filteredProducts() {
-    //   let filteredProducts = products
-
-    //   if (this.filterPriceFrom > 0) {
-    //     filteredProducts = filteredProducts.filter(
-    //       (product) => product.price > this.filterPriceFrom
-    //     )
-    //   }
-    //   if (this.filterPriceTo > 0) {
-    //     filteredProducts = filteredProducts.filter(
-    //       (product) => product.price < this.filterPriceTo
-    //     )
-    //   }
-    //   if (this.filterCategoryId > 0) {
-    //     filteredProducts = filteredProducts.filter(
-    //       (product) => product.categoryId === this.filterCategoryId
-    //     )
-    //   }
-    //   if (this.startColor && this.startColor.length) {
-    //     filteredProducts = filteredProducts.filter(
-    //       (product) => product.colors.indexOf(this.startColor) > -1
-    //     )
-    //   }
-
-    //   return filteredProducts
-    // },
-
     products() {
-      //код для вывода из локальных данных
-      // const offset = (this.page - 1) * this.productsPerPage
-      // return this.filteredProducts.slice(offset, offset + this.productsPerPage)
-
       return this.productsData
         ? this.productsData.data.items.map((product) => {
             return {
@@ -114,8 +93,6 @@ export default {
         : []
     },
     countProducts() {
-      // return this.filteredProducts.length
-
       return this.productsData ? this.productsData.data.pagination.total : 0
     },
   },
@@ -131,6 +108,69 @@ export default {
             params: {
               page: this.page,
               limit: this.productsPerPage,
+              categoryId: this.filterCategoryId,
+              minPrice: this.filterPriceFrom,
+              maxPrice: this.filterPriceTo,
+              colorId: this.startColor,
+            },
+          })
+          .then((response) => (this.productsData = response))
+          .catch(() => (this.productsLoadingFailed = true))
+          .then(() => (this.productsLoading = false))
+      }, 1000)
+    },
+    loadProducts9() {
+      this.productsLoading = true
+      this.productsLoadingFailed = false
+      clearTimeout(this.loadProductsTimer)
+      this.loadProductsTimer = setTimeout(() => {
+        axios
+          .get(API_BASE_URL + '/products', {
+            params: {
+              page: this.page,
+              limit: this.productsPerPage9,
+              categoryId: this.filterCategoryId,
+              minPrice: this.filterPriceFrom,
+              maxPrice: this.filterPriceTo,
+              colorId: this.startColor,
+            },
+          })
+          .then((response) => (this.productsData = response))
+          .catch(() => (this.productsLoadingFailed = true))
+          .then(() => (this.productsLoading = false))
+      }, 1000)
+    },
+    loadProducts18() {
+      this.productsLoading = true
+      this.productsLoadingFailed = false
+      clearTimeout(this.loadProductsTimer)
+      this.loadProductsTimer = setTimeout(() => {
+        axios
+          .get(API_BASE_URL + '/products', {
+            params: {
+              page: this.page,
+              limit: this.productsPerPage18,
+              categoryId: this.filterCategoryId,
+              minPrice: this.filterPriceFrom,
+              maxPrice: this.filterPriceTo,
+              colorId: this.startColor,
+            },
+          })
+          .then((response) => (this.productsData = response))
+          .catch(() => (this.productsLoadingFailed = true))
+          .then(() => (this.productsLoading = false))
+      }, 1000)
+    },
+    loadProducts27() {
+      this.productsLoading = true
+      this.productsLoadingFailed = false
+      clearTimeout(this.loadProductsTimer)
+      this.loadProductsTimer = setTimeout(() => {
+        axios
+          .get(API_BASE_URL + '/products', {
+            params: {
+              page: this.page,
+              limit: this.productsPerPage27,
               categoryId: this.filterCategoryId,
               minPrice: this.filterPriceFrom,
               maxPrice: this.filterPriceTo,
@@ -182,5 +222,13 @@ export default {
 
 .textloadcolor {
   color: #018df7;
+}
+
+.butt {
+  height: 40px;
+  width: 40px;
+  color: #fff;
+  background-color: #222;
+  margin-left: 4px;
 }
 </style>
